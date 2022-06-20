@@ -1,0 +1,13 @@
+Maximum Product Difference Between Two Pairs
+Input: nums = [5,6,2,7,4]
+Output: 34
+
+
+class Solution {
+public:
+    int maxProductDifference(vector<int>& nums) {
+         sort(nums.begin(),nums.end());
+         return(nums[nums.size()-1]*nums[nums.size()-2] - nums[0]*nums[1]);
+       
+        }
+};
