@@ -10,15 +10,20 @@ public:
         int e = arr.size() - 1;
         int mid = s + (e-s)/2;
         while(s<e){
-            if(arr[mid] < arr[mid+1])
+            if(arr[mid] < arr[mid+1])      //clearly we need to search in the right part now
             {
                 s = mid + 1;
             }
             else{
-                e = mid;
+                e = mid;    //we are not doing e=mid-1; because that mid element could be the peak element and by doing e=mid-1 ,
+                            //we may miss that element
             }
              mid = s + (e-s)/2;
         }
         return s;
     }
 };
+
+
+//a common doubt may arise , Why in the while loop we did s<e but not s<=e , Later will lead to TLE as when we will reach that peak element (s=e) ,
+//it will enter the loop and those if conditions will run again, Hnece to come out of the loop when s=e , We did while(s<e)
