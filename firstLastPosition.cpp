@@ -60,6 +60,18 @@ int main()
    int arr[5] = {1,2,3,3,5};
     cout<<firstOcc(arr, 5, 3)<<endl;
     cout<<lastOcc(arr, 5, 3);
-    
+         
+            
     return 0;
 }
+
+   OR If you want to return in pairs than use this logic(pair class)
+         
+   pair<int, int> firstAndLastPosition(vector<int>& arr, int n, int k)
+{
+    pair<int,int> p;
+    p.first = firstOcc(arr, n, k);
+    p.second = lastOcc(arr, n, k);
+    
+    return p;
+   }
