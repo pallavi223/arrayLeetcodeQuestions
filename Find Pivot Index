@@ -1,0 +1,36 @@
+Input: nums = [1,7,3,6,5,6]
+Output: 3
+
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        vector<int> leftSum,rightSum;
+        int sum1 = 0;
+        int sum2 = 0;
+        
+        //to find sum from left most edge
+        for(int i=0;i<nums.size();i++){
+            leftSum.push_back(sum1);
+            sum1 += nums[i];
+            
+        }
+        
+        //to find sum from right most edge
+        for(int i = nums.size()-1; i>=0; i--){
+           
+            rightSum.push_back(sum2);
+            sum2 += nums[i];
+        }
+        
+     for(int i=0;i<nums.size();i++){
+         
+         int start = i;   //left
+         int end = nums.size()-1-i;        //right
+         if(leftSum[start] == rightSum[end])
+             return i;
+         
+     }
+        return -1;
+        
+    }
+};
