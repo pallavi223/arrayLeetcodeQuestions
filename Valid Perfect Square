@@ -1,0 +1,30 @@
+367. Valid Perfect Square
+Input: num = 16
+Output: true
+
+class Solution {
+public:
+    bool isPerfectSquare(int num) {
+  int s = 0;
+        int e = num;
+        long long int mid = s+(e-s)/2;
+        bool ans = false;
+        while(s<=e){
+            long long int square = mid*mid;
+            if(square==num){
+                ans = true;
+                return ans;
+            }
+                
+            if(square < num){
+                
+                s=mid+1;
+            }
+            else{
+                e=mid-1;
+            }
+            mid = s+(e-s)/2;
+        }
+        return ans;
+    }
+};
