@@ -1,0 +1,103 @@
+
+Find Target Indices After Sorting Array
+
+Input: nums = [1,2,5,2,3], target = 2
+Output: [1,2]
+
+Case1: Solution By Linear Search:
+class Solution {
+public:
+    vector<int> targetIndices(vector<int>& nums, int target) {
+       sort(nums.begin(),nums.end());
+        vector<int> ans;
+     for(int i=0;i<nums.size();i++){
+         if(nums[i] == target)
+        ans.push_back(i);
+     }
+      return ans;  
+    }
+};
+
+
+
+case2: Binary Search
+
+This question is similar to last and first occurrence of given number in an array.
+I sorted the array initially to make my task easier.
+I created two functions one for getting the first occurence of the target and another for getting the last occurence of the target.
+After getting first and last occurence, I traversed the sorted array from first occurence to lastoccurence(inclusive) and store all indices.
+
+TC==>O(nlogn)+O(2logn)+O(lastoccurence-firstoccurence) = O(nlogn)
+O(nlogn) => For sorting the array
+O(2logn) => For applying Binary search two times
+O(lastoccurence-firstoccurence) => For traversing indices of target
+SC==>O(lastoccurence-firstoccurence)
+
+class Solution {
+public:
+    int BSF(vector<int>nums,int low,int high,int target)
+    {
+        int ans = -1;
+        while(low<=high)
+        {
+            int mid = low+(high-low)/2;
+            if(nums[mid]==target)
+            {
+                ans = mid;
+                high = mid-1;
+            }
+            else if(nums[mid]>target)
+            {
+                high = mid-1;
+            }
+            else
+            {
+                low = mid+1;
+            }
+        }
+        return ans;
+    }
+    
+    int BSL(vector<int>nums,int low,int high,int target)
+    {
+        int ans = -1;
+        while(low<=high)
+        {
+            int mid = low+(high-low)/2;
+            if(nums[mid]==target)
+            {
+                ans = mid;
+                low = mid+1;
+            }
+            else if(nums[mid]>target)
+            {
+                high = mid-1;
+            }
+            else
+            {
+                low = mid+1;
+            }
+        }
+        return ans;
+    }
+    
+    vector<int> targetIndices(vector<int>& nums, int target) {
+        sort(nums.begin(),nums.end());
+        int n = nums.size();
+        int low = 0;
+        int high = n-1;
+        vector<int>res;
+		//Calling Binary search function for last occurence
+        int lastoccur = BSL(nums,low,high,target);
+		//Calling Binary search function for first occurence
+        int firstoccur = BSF(nums,low,high,target);
+		//If the target is not present then it means it's first occurence is -1. So we have to return empty array.
+        if(firstoccur<0)
+            return res;
+        for(int i=firstoccur;i<=lastoccur;i++)
+        {
+            res.push_back(i);
+        }
+        return res;
+    }
+};
