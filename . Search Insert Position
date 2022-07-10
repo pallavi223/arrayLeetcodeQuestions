@@ -36,3 +36,9 @@ e++;
 return e;
 }
 };
+
+why use e++?
+voh isliya because agar hame array mai number nhi mela toh voh actual position hoge number ki
+because both s & l moving inside the array to search the number .
+and at last we have to increase s || l by one because the loop ends when s<=l thats why
+
