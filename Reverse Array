@@ -27,4 +27,8 @@ int main()
     
 }
 
+2. Direct using stl
 
+  string reverseArray(vector<int> arr) {
+        sort(arr.begin(),arr.end));
+    }
