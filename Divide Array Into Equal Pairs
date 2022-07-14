@@ -1,0 +1,27 @@
+Input: nums = [3,2,3,2,2,2]
+Output: true
+
+
+class Solution {
+public:
+    bool divideArray(vector<int>& nums) {
+       int count=0;
+        sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size();){
+            if(nums[i] == nums[i+1])
+            {
+                count++;
+                i = i+2;
+            }
+            else{
+                return false;
+            }
+        }
+            int pair = nums.size()/2;
+            if(count == pair)
+                return true;
+     return false;
+            
+       
+    }
+};
