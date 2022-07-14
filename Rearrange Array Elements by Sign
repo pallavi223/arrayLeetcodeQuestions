@@ -5,9 +5,14 @@ Output: [3,-2,1,-5,2,-4]
 class Solution {
 public:
     vector<int> rearrangeArray(vector<int>& nums) {
+     // take an array to store final ans of size equal to that of original array.
         vector<int> ans(nums.size());
-        int positive = 0;
-        int negative = 1;
+        // create two pointers to track next positive and negative positions in 'ans' array.
+        int positive = 0;  // first positive pointer in ans array will be index 0. 
+        int negative = 1;    // first negative pointer in ans array will be index 1.
+        
+		// iterate over all elements of original array and the check if it is positive or negative.
+		// if it is positive, place it at the positive index else at negative index in 'ans' array.
         for(int i=0;i<nums.size();i++){
         if(nums[i] > 0){        
             ans[positive] = nums[i];
@@ -15,7 +20,7 @@ public:
         }
         else if(nums[i] < 0){
             ans[negative] = nums[i];
-            negative += 2;
+            negative += 2;  // next negative index will be after one positive index in ans array.
         }
         }
         return ans;
