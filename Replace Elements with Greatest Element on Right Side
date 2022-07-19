@@ -1,0 +1,26 @@
+Replace Elements with Greatest Element on Right Side
+Input: arr = [17,18,5,4,6,1]
+Output: [18,6,6,6,1,-1]
+
+1. Approach:
+A naive method is to run two loops. The outer loop will one by one pick array elements from left to right. 
+The inner loop will find the greatest element present after the picked element.
+Finally the outer loop will replace the picked element with the greatest element found by inner loop. The time complexity of this method will be O(n*n).
+
+2. Optimise approach --> T(C)-O(n)
+
+class Solution {
+public:
+    vector<int> replaceElements(vector<int>& arr) {
+        int maxi=-1;
+        for(int i=arr.size()-1;i>=0;i--){
+            int temp=maxi;
+            
+                if(arr[i] > maxi)
+                    maxi = arr[i];
+            
+            arr[i] = temp;
+        }
+        return arr;
+    }
+};
