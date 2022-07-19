@@ -1,0 +1,26 @@
+N = 5
+A[] = {-2, 1, -4, 5, 3}
+Output: 1
+
+class Solution
+{
+   public:
+    int findSum(int A[], int N)
+    {
+    	int maxi = INT_MIN;
+    	int mini = INT_MAX;
+    	int sum = 0;
+    	for(int i=0;i<N;i++){
+    	    if(A[i] < mini){
+    	        mini = A[i];
+    	    }
+    	    else if(A[i] > maxi){
+    	        maxi = A[i];
+    	    }
+    	    	sum = mini+maxi;
+    	}
+    
+    	return sum;
+    }
+
+};
